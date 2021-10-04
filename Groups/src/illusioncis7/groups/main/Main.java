@@ -1,5 +1,7 @@
 package illusioncis7.groups.main;
 
-public class Main {
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class Main extends JavaPlugin {
 
 }
