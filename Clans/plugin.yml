@@ -1,0 +1,8 @@
+name: Clans
+version: 1.0
+author: IllusionCIS7
+main: illusioncis7.clans.Main
+commands:
+    groups:
+        description: Gruppen koennen alles
+        usage: /<command>
