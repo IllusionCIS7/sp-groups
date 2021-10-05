@@ -1,0 +1,7 @@
+defaultGroupChatColor: '&5'
+defaultUserChatColor: '&f'
+forbiddenColors:
+  - '&k'
+  - '&m'
+  - '&n'
+  - '&r'
