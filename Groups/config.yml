@@ -1,3 +1,4 @@
+# Konfiguration im YAML-Format
 defaultGroupChatColor: '&5'
 defaultUserChatColor: '&f'
 forbiddenColors:

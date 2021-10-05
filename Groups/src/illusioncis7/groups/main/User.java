@@ -5,8 +5,15 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+
+Diese Klasse stellt einen Spieler dar
+
+ */
+
 public class User {
 
+    // Eigenschaften eines Spielers
     private final String uuid;
     private Player player;
     private String chatColor;
@@ -16,6 +23,9 @@ public class User {
 
     private ConfigManager ucm;
 
+    /* Wird als zweiter Parameter true übergeben, wird der Spieler in der User-Config mit seinen Default-Werten
+       angelegt
+    */
     public User(String playerByUUID, boolean isNew)
     {
         uuid = playerByUUID;
@@ -29,34 +39,51 @@ public class User {
         }
     }
 
+    /* Wird nur die UUID eines Spielers an den Konstruktor übergeben, wird das Spieler-Objekt mit den dazugehörigen
+       Eigenschaften gefüllt
+    */
     public User(String playerByUUID)
     {
         ucm = new ConfigManager("user.yml");
         this.uuid = playerByUUID;
+        load();
     }
 
+    // Lädt die Eigenschaften eines Spielers anhand der UUID
     private void load()
     {
         chatColor = ucm.getFileConfiguration().getString(CFG.UserChatColor(uuid));
+        clanChatActive = ucm.getFileConfiguration().getBoolean(CFG.UserClanChatActive(uuid));
+
+        // Überprüft ob eine Gruppe in der Spieler-Config vorhanden ist
         if (ucm.getFileConfiguration().getString(CFG.UserGroup(uuid), "null").equals("null")) {
             group = null;
         } else {
             group = new Group(ucm.getFileConfiguration().getString(CFG.UserGroup(uuid)));
         }
+
+        // Überprüft ob Einladungen in der Spieler-Config vorhanden sind
         if (ucm.getFileConfiguration().getStringList(CFG.UserInvitations(uuid)).isEmpty()) {
             invitations = null;
         } else {
             for (String s : ucm.getFileConfiguration().getStringList(CFG.UserInvitations(uuid)))
             {
+                /*
+                Fügt vorhandene Einladungen hinzu, indem eine neue Einladung mit den Übergabeparametern der Gruppe
+                und des Spielers (diese Klasse, deshalb 'this') erstellt wird
+                 */
                 invitations.add(new Invitation(new Group(s), this));
             }
         }
     }
 
+    // Speichert alle Eigenschaften dieses Spieler-Objekts in der Spieler-Config
     private void save()
     {
         ucm.set(CFG.UserClanChatActive(uuid), clanChatActive);
         ucm.set(CFG.UserChatColor(uuid), chatColor);
+
+        // Einladungen sollen nur gespeichert werden, wenn auch welche vorhanden sind
         if (!invitations.isEmpty())
         {
             List<String> invs = new ArrayList<>();
@@ -66,50 +93,61 @@ public class User {
             }
             ucm.set(CFG.UserInvitations(uuid), invs);
         }
+
+        // Die Gruppe soll nur gespeichert werden, wenn auch eine vorhanden ist
         if (group != null)
         {
             ucm.set(CFG.UserGroup(uuid), group.getGroupName());
         }
     }
 
+    // Schaltet den Boolean Wert um und speichert dies auch direkt in der User-Config
     public boolean switchClanChat()
     {
         clanChatActive = !clanChatActive;
         save();
         return this.clanChatActive;
     }
+
+    // Gibt einen Boolschen Wert zurück, ob der clanChat Aktiv ist
     public boolean getClanChatActive()
     {
         return clanChatActive;
     }
 
+    // Fügt eine Einladung der Liste hinzu und speichert diese sofort
     public void setInvitation(Invitation newInvitation)
     {
         invitations.add(newInvitation);
         save();
     }
+
+    // Gibt eine Liste der Einladungen zurück
     public List<Invitation> getInvitations()
     {
         return this.invitations;
     }
 
+    // Setzt die Gruppe des Spielers und speichert diese sofort
     public void setGroup(Group newGroup)
     {
         this.group = newGroup;
         save();
     }
+
+    // Gibt die Gruppe des Spielers zurück
     public Group getGroup()
     {
         return this.group;
     }
 
+    // Gibt die UUID des Spielers zurück
     public String getUuid()
     {
         return this.uuid;
     }
 
-
-
+    // Überprüft ob der Spieler bzw die UUID im Spieler-Objekt schon in der User-Config existiert
     private boolean userExists()
     {
         return !ucm.getFileConfiguration().getString(CFG.UserChatColor(uuid), "null").equals("null");

@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+/*
+
+Diese Klasse beinhaltet alle für eine Gruppe wichtige Eigenschaften und Methoden
+
+ */
+
 public class Group {
 
     private final String guid;
@@ -21,15 +27,22 @@ public class Group {
 
     private ConfigManager gcm;
 
+    // Konstruktor zum Erstellen einer neuen Gruppe
     public Group(String newGroupName, User newOwner)
     {
+        /* Erzeugt eine möglichst zufällige ID für die Gruppe.
+           Die ID ist wichtig, da ich es möglich machen möchte, den Gruppennamen wechsel zu können.
+           Das wird so erleichtert
+        */
         this.guid = UUID.fromString(newOwner.getUuid()+ new Random().nextInt(100)).toString();
         this.owner = newOwner;
         this.groupName = newGroupName;
         this.member.add(newOwner);
         getConfigs();
+        save();
     }
 
+    // Wenn nur ein String dem Konstruktor übergeben wird, wird das Gruppe-Objekt mit den Eigenschaften gefüllt
     public Group(String guid)
     {
         this.guid = guid;
@@ -37,6 +50,7 @@ public class Group {
         load();
     }
 
+    // Speichert die Eigenschaften ab. Je nachdem, ob die Gruppe existiert oder nicht, geschieht das anders
     private void save()
     {
         if (!groupExists())
@@ -50,6 +64,16 @@ public class Group {
             gcm.set(CFG.GroupMember(guid), getMembersUUID());
             gcm.set(CFG.GroupName(guid), groupName);
             gcm.set(CFG.GroupChatColor(guid), chatColor);
+            /*
+            (baseWorld==null)?"null":baseWorld.getName() im Befehl unter diesem Kommentar ist ein Short-If-Else
+            Ausgeschrieben sähe das so aus:
+
+            if (baseWorld==null) {
+                gcm.set(CFG.GroupBaseWorld(guid), "null");
+            } else {
+                gcm.set(CFG.GroupBaseWorld(guid), baseWorld.getName();
+            }
+             */
             gcm.set(CFG.GroupBaseWorld(guid), (baseWorld==null)?"null":baseWorld.getName());
             gcm.set(CFG.GroupBaseCoordinatesX(guid), (baseLoc==null)?"null":baseLoc.getX());
             gcm.set(CFG.GroupBaseCoordinatesY(guid), (baseLoc==null)?"null":baseLoc.getY());
@@ -57,26 +81,38 @@ public class Group {
         }
     }
 
+    // Gibt eine Liste der UUIDs aller Member zurück
     private List<String> getMembersUUID()
     {
+        // Erstelle eine neue String-Liste
         List<String> memberes = new ArrayList<>();
+
+        /*
+        Für jedes Objekt in der Liste member Erstelle ein User-Objekt mit dem Namen u
+         */
         for (User u : member)
         {
+            // Füge der String-Liste memberes die UUID des aktuellen Users der member Liste hinzu
             memberes.add(u.getUuid());
         }
+        // Gebe die String-Liste memberes zurück
         return memberes;
     }
 
+    // Fügt einen Spieler der member Liste hinzu und speichert dies sofort
     public void setMember(User newUser)
     {
         member.add(newUser);
         save();
     }
+
+    // Gibt eine Liste von User Objekten zurück die die Gruppenmitglieder beinhaltet
     public List<User> getMembers()
     {
         return member;
     }
 
+    // Lade alle Parameter der Gruppe in der Config in das Objekt
     private void load()
     {
         if (!gcm.getFileConfiguration().getString(this.guid, "null").equals("null"))
@@ -108,38 +144,49 @@ public class Group {
         }
     }
 
+    // Definiert das Objekt gcm welches nun die Config für die groups.yml enthält
     private void getConfigs()
     {
         gcm = new ConfigManager("groups.yml");
     }
 
+    // Selbsterklärend
     public void setGroupName(String newGroupName)
     {
         this.groupName = newGroupName;
     }
+
+    // Selbsterklärend
     public String getGroupName()
     {
         return this.groupName;
     }
 
+    // Selbsterklärend
     public void setChatColor(String newChatColor)
     {
         this.chatColor = newChatColor;
     }
+
+    // Selbsterklärend
     public String getChatColor()
     {
         return this.chatColor;
     }
 
+    // Selbsterklärend
     public User getOwner()
     {
         return this.owner;
     }
+
+    // Selbsterklärend
     public void setOwner(User newOwner)
     {
         this.owner = newOwner;
     }
 
+    // Gibt einen boolschen Wert zurück, ob die Gruppe bzw dessen UniqueID schon in der Config existiert
     private boolean groupExists()
     {
         return (!gcm.getFileConfiguration().getString(CFG.GroupName(guid), "null").equals("null"));
