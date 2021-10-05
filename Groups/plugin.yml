@@ -1,0 +1,11 @@
+name: Groups
+author: IllusionCIS7
+version: 1.0
+main: illusioncis7.groups.main.Main
+commands:
+  groups:
+    description: Zeigt alle verfuegbaren Commands an
+    usage: /groups
+permissions:
+  groups.group.create:
+    default:  not op
