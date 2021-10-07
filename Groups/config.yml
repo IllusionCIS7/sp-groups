@@ -1,8 +1,23 @@
 # Konfiguration im YAML-Format
 defaultGroupChatColor: '&5'
 defaultUserChatColor: '&f'
+defaultGroup: 'Spieler'
+chatFormat: '&7&l˅&r %c%%cc%%groupName% &7*%pc% %1$s &7&l˅&r \n&7%2$s'
 forbiddenColors:
   - '&k'
   - '&m'
   - '&n'
   - '&r'
+forbiddenGroupNames:
+  - 'Spieler'
+  - 'Admin'
+  - 'Owner'
+  - 'Inhaber'
+  - 'Moderator'
+  - 'Administrator'
+  - 'Support'
+  - 'Supporter'
+  - 'Hurensohn'
+  - 'Huso'
+  - 'Spasti'
+  - 'Arschloch'

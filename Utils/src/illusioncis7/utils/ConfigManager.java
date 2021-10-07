@@ -1,4 +1,4 @@
-package illusioncis7.groups.main;
+package illusioncis7.utils;
 
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;

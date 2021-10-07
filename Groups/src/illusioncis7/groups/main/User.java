@@ -49,6 +49,13 @@ public class User {
         load();
     }
 
+    public User(Player playerByObject)
+    {
+        ucm = new ConfigManager("user.yml");
+        this.uuid = playerByObject.getUniqueId().toString();
+        load();
+    }
+
     // Lädt die Eigenschaften eines Spielers anhand der UUID
     private void load()
     {
@@ -151,5 +158,9 @@ public class User {
     private boolean userExists()
     {
         return !ucm.getFileConfiguration().getString(CFG.UserChatColor(uuid), "null").equals("null");
+    }
+    public boolean hasClan()
+    {
+        return (group!=null);
     }
 }
