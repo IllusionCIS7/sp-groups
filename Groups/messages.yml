@@ -1,24 +1,22 @@
 chatToggleActive: '&7Dein Gruppenchat wurde &aeingeschaltet&7.\nDeine Nachrichten werden nur noch von Gruppenmitgliedern gesehen.'
 chatToggleInactive: '&7Dein Gruppenchat wurde &causgeschaltet&7.\nDeine Nachrichten sind wieder global von jedem zu sehen.'
 failed: '&cEs ist etwas schief gelaufen!'
-notExists: '&7Die Gruppe &9%groupName% &7existiert nicht!'
+groupNotExists: '&7Die Gruppe &9%groupName% &7existiert nicht!'
 playerNotExists: '&7Der Spieler existiert nicht!'
 playerNotOnline: '&7Dieser Spieler ist nicht online!'
 memberRemoveSuccess: '&7Der Spieler wurde &aerfolgreich &7entfernt.'
 memberAddSuccess: '&aEinladung wurde versendet!'
 gotInvite: '&bDu hast eine Einladung von der &9%groupName%-Gruppe &berhalten!'
-alreadyInClan: '&7Du bist bereits in einer Gruppe!'
-clanLeaving: '&7Du hast die Gruppe &aerfolgreich &7verlassen'
-createClan:
+alreadyInGroup: '&7Du bist bereits in einer Gruppe!'
+leavedGroup: '&7Du hast die Gruppe &aerfolgreich &7verlassen'
+notOwner: 'Du bist nicht der Owner dieser Gruppe!'
+createGroup:
   alreadyExists: '&7Die Gruppe &9%groupName% &7existiert bereits!'
   success: '&aDie Gruppe &9%groupName% &awurde erstellt. \n&7Mit &e/groups groupcolor <farbcode> &7kannst du eine Farbe f\u00FCr deinen Gruppenprefix setzen.'
-deleteClan:
+deleteGroup:
   doesntExists: '&7Du bist in keiner Gruppe!'
   success: '&7Gruppe &9%groupName% &7erfolgreich gel\u00F6scht.'
   notify: '&7Deine Gruppe &9%groupName% &7wurde gel\u00F6scht!'
-  notOwner: '&7Nur der Owner der Gruppe kann diese l\u00F6schen!'
-player:
-  alreadyHasClan: '&7Du bist bereits in einer Gruppe!'
 invite:
   incoming: '&bDu hast eine Einladung von der &9%groupName%-Gruppe &berhalten. \n&7Tippe zum annehmen &e/groups accept %groupName%'
   accepted: '&aEinladung angenommen.'
@@ -28,17 +26,15 @@ invite:
 baseSpawn:
   created: '&7Base-Spawnpunkt gesetzt.'
   teleported: '&7Du wurdest zur Base teleportiert.'
-  notOwner: '&7Du bist nicht der Besitzer der Gruppe!'
 colors:
   nameColorChanged: '&7Die Farbe deines Namens wurde ge\u00E4ndert.'
-  clanColorChanged: '&7Die Farbe deiner Gruppe wurde ge\u00E4ndert.'
-  clanColorNotOwner: '&7Nur der Owner der Gruppe kann die Farbe \u00E4ndern!'
+  groupColorChanged: '&7Die Farbe deiner Gruppe wurde ge\u00E4ndert.'
 stats:
-  line1: '&c&l---------- Gruppen Stats -----------'
-  line2: '&9%groupName%'
-  line3: '&f&lBesitzer: &r&4%owner%'
-  line4: '&f&lAnh\u00E4nger: &r&3%members%'
-  line5: '&c&l--------------------------------'
+  - '&c&l---------- Gruppen Stats -----------'
+  - '&9%groupName%'
+  - '&f&lBesitzer: &r&4%owner%'
+  - '&f&lAnh\u00E4nger: &r&3%members%'
+  - '&c&l--------------------------------'
 commands:
   - '&8Verf\u00FCgbare Befehle f\u00FCr Gruppen'
   - '&e/groups create <groupName> &8Gruppe erstellen'
