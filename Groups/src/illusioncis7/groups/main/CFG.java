@@ -27,9 +27,7 @@ public final class CFG {
     public static String GroupBaseWorld(String guid){
         return guid + ".base.world";
     }
-    public static String GroupBaseCoordinatesX(String guid){
-        return guid + ".base.x";
-    }
+    public static String GroupBaseCoordinatesX(String guid){ return guid + ".base.x"; }
     public static String GroupBaseCoordinatesY(String guid){
         return guid + ".base.y";
     }

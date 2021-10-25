@@ -6,6 +6,8 @@ Diese Klasse stellt eine Einladung zu einer Gruppe dar
 
  */
 
+import illusioncis7.utils.ConfigManager;
+
 public class Invitation {
 
     Group group; // Die Gruppe zu der eingeladen wird
@@ -17,8 +19,8 @@ public class Invitation {
     public Invitation(Group newGroup, User newUser)
     {
         // Abrufen der nötigen Konfigurationen
-        gcm = new ConfigManager("groups.yml");
-        ucm = new ConfigManager("user.yml");
+        gcm = new ConfigManager(Main.getPlugin(Main.class), "groups.yml");
+        ucm = new ConfigManager(Main.getPlugin(Main.class), "user.yml");
 
         // Übergabeparameter (Gruppe und eingeladener Spieler) werden an die Klassenvariablen übergeben
         group = newGroup;

@@ -1,5 +1,7 @@
 package illusioncis7.groups.main;
 
+import illusioncis7.utils.Checker;
+import illusioncis7.utils.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -24,6 +26,7 @@ public class Group {
     private List<User> member;
     private World baseWorld;
     private Location baseLoc;
+
 
     private ConfigManager gcm;
 
@@ -147,13 +150,21 @@ public class Group {
     // Definiert das Objekt gcm welches nun die Config für die groups.yml enthält
     private void getConfigs()
     {
-        gcm = new ConfigManager("groups.yml");
+        gcm = new ConfigManager(Main.getPlugin(Main.class), "groups.yml");
     }
 
     // Selbsterklärend
-    public void setGroupName(String newGroupName)
+    public boolean setGroupName(String newGroupName)
     {
-        this.groupName = newGroupName;
+        if (Checker.HasIllegalGroupName(groupName))
+        {
+            return false;
+        }
+        else
+        {
+            this.groupName = newGroupName;
+            return true;
+        }
     }
 
     // Selbsterklärend
@@ -163,9 +174,17 @@ public class Group {
     }
 
     // Selbsterklärend
-    public void setChatColor(String newChatColor)
+    public boolean setChatColor(String newChatColor)
     {
-        this.chatColor = newChatColor;
+        if (Checker.HasIllegalColorCodes(newChatColor))
+        {
+            return false;
+        }
+        else
+        {
+            this.chatColor = newChatColor;
+            return true;
+        }
     }
 
     // Selbsterklärend

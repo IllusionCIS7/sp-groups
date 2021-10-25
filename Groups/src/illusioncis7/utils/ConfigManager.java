@@ -1,5 +1,7 @@
-package illusioncis7.groups.main;
+package illusioncis7.utils;
 
+import illusioncis7.groups.main.MSG;
+import illusioncis7.groups.main.Main;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -25,6 +27,12 @@ public class ConfigManager {
     public ConfigManager(Plugin plug, String fileName)
     {
         instance = plug;
+        setConfig(fileName);
+    }
+
+    public ConfigManager(String fileName)
+    {
+        instance = Main.getPlugin(Main.class);
         setConfig(fileName);
     }
 

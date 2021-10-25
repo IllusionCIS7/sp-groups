@@ -1,5 +1,7 @@
 package illusioncis7.groups.main;
 
+import illusioncis7.utils.Checker;
+import illusioncis7.utils.ConfigManager;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class User {
 
     private ConfigManager ucm;
 
-    /* Wird als zweiter Parameter true übergeben, wird der Spieler in der User-Config mit seinen Default-Werten
+    /* Wird als zweiter Parameter true übergeben, wird der Spieler in der User-Config mit Default-Werten
        angelegt
     */
     public User(String playerByUUID, boolean isNew)
@@ -31,8 +33,8 @@ public class User {
         uuid = playerByUUID;
         if (isNew)
         {
-            ConfigManager cfg = new ConfigManager("config.yml");
-            ucm = new ConfigManager("user.yml");
+            ConfigManager cfg = new ConfigManager(Main.getPlugin(Main.class), "config.yml");
+            ucm = new ConfigManager(Main.getPlugin(Main.class), "user.yml");
             clanChatActive = false;
             chatColor = cfg.getFileConfiguration().getString(CFG.ConfigDefaultUserChatColor());
             save();
@@ -44,14 +46,14 @@ public class User {
     */
     public User(String playerByUUID)
     {
-        ucm = new ConfigManager("user.yml");
+        ucm = new ConfigManager(Main.getPlugin(Main.class), "user.yml");
         this.uuid = playerByUUID;
         load();
     }
 
     public User(Player playerByObject)
     {
-        ucm = new ConfigManager("user.yml");
+        ucm = new ConfigManager(Main.getPlugin(Main.class), "user.yml");
         this.uuid = playerByObject.getUniqueId().toString();
         load();
     }
@@ -62,7 +64,7 @@ public class User {
         chatColor = ucm.getFileConfiguration().getString(CFG.UserChatColor(uuid));
         clanChatActive = ucm.getFileConfiguration().getBoolean(CFG.UserClanChatActive(uuid));
 
-        // Überprüft ob eine Gruppe in der Spieler-Config vorhanden ist
+        // Überprüft, ob eine Gruppe in der Spieler-Config vorhanden ist
         if (ucm.getFileConfiguration().getString(CFG.UserGroup(uuid), "null").equals("null")) {
             group = null;
         } else {
@@ -116,7 +118,7 @@ public class User {
         return this.clanChatActive;
     }
 
-    // Gibt einen Boolschen Wert zurück, ob der clanChat Aktiv ist
+    // Gibt einen Booleschen Wert zurück, ob der clanChat aktiv ist
     public boolean getClanChatActive()
     {
         return clanChatActive;
@@ -152,6 +154,24 @@ public class User {
     public String getUuid()
     {
         return this.uuid;
+    }
+
+    public boolean setChatColor(String newChatColor)
+    {
+        if (Checker.HasIllegalColorCodes(newChatColor))
+        {
+            return false;
+        }
+        else
+        {
+            this.chatColor = newChatColor;
+            return true;
+        }
+    }
+
+    public String getChatColor()
+    {
+        return this.chatColor;
     }
 
     // Überprüft ob der Spieler bzw die UUID im Spieler-Objekt schon in der User-Config existiert
