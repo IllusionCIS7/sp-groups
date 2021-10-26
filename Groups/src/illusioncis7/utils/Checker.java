@@ -1,6 +1,5 @@
 package illusioncis7.utils;
 
-import illusioncis7.groups.main.Main;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public final class Checker {
 
         for (String fs : illegalStrings)
         {
-            if (stc.contains(lc) || stc.contains(uc))
+            if ((stc.contains(fs)) || (lc.contains(fs)) || (uc.contains(fs)))
             {
                 return true;
             }

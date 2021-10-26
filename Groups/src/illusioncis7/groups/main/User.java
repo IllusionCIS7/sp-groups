@@ -2,10 +2,13 @@ package illusioncis7.groups.main;
 
 import illusioncis7.utils.Checker;
 import illusioncis7.utils.ConfigManager;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /*
 
@@ -56,6 +59,16 @@ public class User {
         ucm = new ConfigManager(Main.getPlugin(Main.class), "user.yml");
         this.uuid = playerByObject.getUniqueId().toString();
         load();
+    }
+
+    public OfflinePlayer getOfflinePlayer()
+    {
+        return Bukkit.getOfflinePlayer(UUID.fromString(this.getUuid()));
+    }
+
+    public Player getPlayer()
+    {
+        return Bukkit.getPlayer(UUID.fromString(this.getUuid()));
     }
 
     // Lädt die Eigenschaften eines Spielers anhand der UUID
