@@ -45,7 +45,7 @@ commands:
   - '&e/groups delete    &8Gruppe l\u00F6schen'
   - '&e/groups setbase    &8Base-Spawnpoint f\u00FCr deine Gruppe erstellen'
   - '&e/groups tpbase    &8Teleportiert dich zur Base'
-  - '&e/groups clancolor <farbe>    &8Farbe f\u00FCr deine Gruppe im Chat setzen'
+  - '&e/groups groupcolor <farbe>    &8Farbe f\u00FCr deine Gruppe im Chat setzen'
   - '&e/groups namecolor <farbe>    &8Farbe f\u00FCr deinen Namen im Chat setzen'
   - '&e/groups addmember <spielername>     &8F\u00FCgt deiner Gruppe einen Spieler hinzu'
   - '&e/groups removemember <spielername>    &8Entfernt einen Spieler aus deiner Gruppe'
