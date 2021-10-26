@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.List;
+import java.util.Objects;
 
 public final class MSG {
 
@@ -12,33 +13,33 @@ public final class MSG {
 
 
     public static String ChatToggleActive() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("chatToggleActive"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("chatToggleActive")));
     }
 
     public static String IllegalColorCode() {
         String msg = cm.getString("illegalColorCode");
         FileConfiguration fc = new ConfigManager("config.yml").getFileConfiguration();
         List<String> illegalCodes = fc.getStringList("forbiddenColors");
-        String illColors = "";
+        StringBuilder illColors = new StringBuilder();
         for (String s : illegalCodes)
         {
-            illColors += (s + ", ");
+            illColors.append(s).append(", ");
         }
-        msg = msg.replaceAll("%illegalColorCodes", illColors);
+        msg = msg.replaceAll("%illegalColorCodes", illColors.toString());
         return ChatColor.translateAlternateColorCodes('$', msg);
     }
 
     public static String IllegalGroupName()
     {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("illegalGroupName"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("illegalGroupName")));
     }
 
     public static String ChatToggleInactive() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("chatToggleInactive"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("chatToggleInactive")));
     }
 
     public static String Failed() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("failed"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("failed")));
     }
 
     public static String GroupNotExists(String falseGroupName) {
@@ -48,19 +49,19 @@ public final class MSG {
     }
 
     public static String PlayerNotExists() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("playerNotExists"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("playerNotExists")));
     }
 
     public static String PlayerNotOnline() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("playerNotOnline"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("playerNotOnline")));
     }
 
     public static String MemberRemoveSuccess() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("memberRemoveSuccess"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("memberRemoveSuccess")));
     }
 
     public static String MemberAddSuccess() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("memberAddSuccess"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("memberAddSuccess")));
     }
 
     public static String GotInvite(Group group) {
@@ -70,17 +71,17 @@ public final class MSG {
     }
 
     public static String AlreadyInGroup() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("alreadyInGroup"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("alreadyInGroup")));
     }
 
     public static String LeavedGroup() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("leavedGroup"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("leavedGroup")));
     }
 
     public static String CreateGroupAlreadyExists(Group group) {
         String msg = cm.getString("createGroup.alreadyExists");
-        msg = msg.replaceAll("%groupName%", existingGroupName);
-        msg = msg.replaceAll("%owner%", group.getOwner().getOfflinePlayer().getName());
+        msg = msg.replaceAll("%groupName%", group.getGroupName());
+        msg = msg.replaceAll("%owner%", Objects.requireNonNull(group.getOwner().getOfflinePlayer().getName()));
         return ChatColor.translateAlternateColorCodes('&', msg);
     }
 
@@ -91,11 +92,11 @@ public final class MSG {
     }
 
     public static String HasNoGroup() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("hasNoGroup"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("hasNoGroup")));
     }
 
     public static String DeleteGroupDoesntExists() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("deleteGroup.doesntExists"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("deleteGroup.doesntExists")));
     }
 
     public static String DeleteGroupSuccess(String groupName) {
@@ -111,7 +112,7 @@ public final class MSG {
     }
 
     public static String NotOwner() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("notOwner"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("notOwner")));
     }
 
     public static String InviteIncoming(Group group) {
@@ -121,11 +122,11 @@ public final class MSG {
     }
 
     public static String InviteAccepted() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("invite.accepted"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("invite.accepted")));
     }
 
     public static String InviteDeclined() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("invite.declined"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("invite.declined")));
     }
 
     public static String InviteList(Group group) {
@@ -135,43 +136,43 @@ public final class MSG {
     }
 
     public static String InviteNotExists() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("invite.notExists"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("invite.notExists")));
     }
 
     public static String BaseSpawnCreated() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("baseSpawn.created"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("baseSpawn.created")));
     }
 
     public static String BaseSpawnTeleported() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("baseSpawn.teleported"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("baseSpawn.teleported")));
     }
 
     public static String BaseSpawnNotExists() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("baseSpawn.notExists"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("baseSpawn.notExists")));
     }
 
     public static String ColorsNameColorChanged() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("colors.nameColorChanged"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("colors.nameColorChanged")));
     }
 
     public static String ColorsGroupColorChanged() {
-        return ChatColor.translateAlternateColorCodes('&', cm.getString("colors.groupColorChanged"));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("colors.groupColorChanged")));
     }
 
     public static List<String> Stats(Group group) {
         List<String> list = cm.getStringList("stats");
-        String members = null;
+        StringBuilder members = null;
         for (User u : group.getMembers())
         {
             String username = u.getOfflinePlayer().getName();
-            members += (username + ", ");
+            members.append(username).append(", ");
         }
         int i = 0;
         for (String s : list)
         {
             list.set(i, list.get(i).replaceAll("%groupName%", group.getGroupName()));
-            list.set(i, list.get(i).replaceAll("%owner%", group.getOwner().getOfflinePlayer().getName()));
-            list.set(i, list.get(i).replaceAll("%members%", members));
+            list.set(i, list.get(i).replaceAll("%owner%", Objects.requireNonNull(group.getOwner().getOfflinePlayer().getName())));
+            list.set(i, list.get(i).replaceAll("%members%", members.toString()));
             i++;
         }
         return makeColorsList(list);
