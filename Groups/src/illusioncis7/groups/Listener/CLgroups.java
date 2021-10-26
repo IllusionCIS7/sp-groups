@@ -13,7 +13,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
 import java.util.List;
 import java.util.Set;
 
@@ -44,6 +43,10 @@ public class CLgroups implements CommandExecutor {
                 else if (args[0].equalsIgnoreCase("setbase") && args.length == 1)
                 {
                     playerSender.sendMessage(SetBase(user, playerSender));
+                }
+                else if (args[0].equalsIgnoreCase("tpbase") && args.length == 1)
+                {
+
                 }
             }
         }
@@ -95,6 +98,30 @@ public class CLgroups implements CommandExecutor {
             else
             {
                 response = MSG.NotOwner();
+            }
+        }
+        else
+        {
+            response = MSG.HasNoGroup();
+        }
+        return response;
+    }
+
+    private String TpBase(User user, Player player)
+    {
+        String reponse = standardResponse;
+
+        if (user.hasGroup())
+        {
+            Group group = user.getGroup();
+            if (group.getBase() == null)
+            {
+                 reponse = MSG.BaseSpawnNotExists();
+            }
+            else
+            {
+                player.teleport(group.getBase());
+                response = MSG.BaseSpawnTeleported();
             }
         }
         else

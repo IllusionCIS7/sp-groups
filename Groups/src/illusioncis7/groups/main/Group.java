@@ -119,6 +119,11 @@ public class Group {
         save();
     }
 
+    public Location getBase()
+    {
+        return this.baseLoc;
+    }
+
     // Gibt eine Liste von User Objekten zurück die die Gruppenmitglieder beinhaltet
     public List<User> getMembers()
     {

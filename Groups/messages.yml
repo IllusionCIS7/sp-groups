@@ -27,6 +27,7 @@ invite:
   notExists: '&cDie Einladung existiert nicht.'
   list: '&7Einladung zur &9%groupName%&7-Gruppe'
 baseSpawn:
+  notExists: '&7Es existiert noch kein Base-Spawnpunkt.'
   created: '&7Base-Spawnpunkt gesetzt.'
   teleported: '&7Du wurdest zur Base teleportiert.'
 colors:

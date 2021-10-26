@@ -146,6 +146,10 @@ public final class MSG {
         return ChatColor.translateAlternateColorCodes('&', cm.getString("baseSpawn.teleported"));
     }
 
+    public static String BaseSpawnNotExists() {
+        return ChatColor.translateAlternateColorCodes('&', cm.getString("baseSpawn.notExists"));
+    }
+
     public static String ColorsNameColorChanged() {
         return ChatColor.translateAlternateColorCodes('&', cm.getString("colors.nameColorChanged"));
     }
