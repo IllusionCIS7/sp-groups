@@ -1,20 +1,16 @@
 package illusioncis7.groups.Listener;
 
-import illusioncis7.groups.main.CFG;
 import illusioncis7.groups.main.Group;
 import illusioncis7.groups.main.MSG;
 import illusioncis7.groups.main.User;
 import illusioncis7.utils.Checker;
-import illusioncis7.utils.ConfigManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Set;
 
 // Command Executor fpr den '/groups' Command
 public class CLgroups implements CommandExecutor {
@@ -63,7 +59,7 @@ public class CLgroups implements CommandExecutor {
         }
         else
         {
-            Group checkGroup = checkGroupNameAvailability(groupName);
+            Group checkGroup = Checker.checkGroupNameAvailability(groupName);
             if (checkGroup.equals(new Group(null)))
             {
                 if (Checker.HasIllegalGroupName(groupName))
@@ -109,14 +105,14 @@ public class CLgroups implements CommandExecutor {
 
     private String TpBase(User user, Player player)
     {
-        String reponse = standardResponse;
+        String response = standardResponse;
 
         if (user.hasGroup())
         {
             Group group = user.getGroup();
             if (group.getBase() == null)
             {
-                 reponse = MSG.BaseSpawnNotExists();
+                 response = MSG.BaseSpawnNotExists();
             }
             else
             {
@@ -129,21 +125,5 @@ public class CLgroups implements CommandExecutor {
             response = MSG.HasNoGroup();
         }
         return response;
-    }
-
-    private Group checkGroupNameAvailability(String groupName)
-    {
-        FileConfiguration cm = new ConfigManager("groups.yml").getFileConfiguration();
-        Set<String> guids = null;
-        guids = cm.getConfigurationSection("groups").getKeys(false);
-        for (String guid : guids)
-        {
-            String gn = cm.getString(CFG.GroupName(guid));
-            if (gn.equalsIgnoreCase(groupName))
-            {
-                return new Group(guid);
-            }
-        }
-        return new Group(null);
     }
 }
