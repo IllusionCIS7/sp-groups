@@ -77,15 +77,16 @@ public final class MSG {
         return ChatColor.translateAlternateColorCodes('&', cm.getString("leavedGroup"));
     }
 
-    public static String CreateGroupAlreadyExists(String existingGroupName) {
+    public static String CreateGroupAlreadyExists(Group group) {
         String msg = cm.getString("createGroup.alreadyExists");
         msg = msg.replaceAll("%groupName%", existingGroupName);
+        msg = msg.replaceAll("%owner%", group.getOwner().getOfflinePlayer().getName());
         return ChatColor.translateAlternateColorCodes('&', msg);
     }
 
-    public static String CreateGroupSuccess(String groupName) {
+    public static String CreateGroupSuccess(Group group) {
         String msg = cm.getString("createGroup.success");
-        msg = msg.replaceAll("%groupName%", groupName);
+        msg = msg.replaceAll("%groupName%", group.getGroupName());
         return ChatColor.translateAlternateColorCodes('&', msg);
     }
 

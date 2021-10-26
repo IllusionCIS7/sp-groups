@@ -13,7 +13,7 @@ notOwner: 'Du bist nicht der Owner dieser Gruppe!'
 illegalColorCode: '$7Du hast einen oder mehrere nicht erlaubte Farbcodes verwendet!\nNicht erlaubt sind: $c%illegalColorCodes%'
 illegalGroupName: 'Dein Gruppenname enthält eine oder mehrere nicht erlaubte Zeichenfolgen!'
 createGroup:
-  alreadyExists: '&7Die Gruppe &9%groupName% &7existiert bereits!'
+  alreadyExists: '&7Die Gruppe &9%groupName% &7existiert bereits!\n Sie gehört &9%owner%'
   success: '&aDie Gruppe &9%groupName% &awurde erstellt. \n&7Mit &e/groups groupcolor <farbcode> &7kannst du eine Farbe f\u00FCr deinen Gruppenprefix setzen.'
 deleteGroup:
   doesntExists: '&7Du bist in keiner Gruppe!'

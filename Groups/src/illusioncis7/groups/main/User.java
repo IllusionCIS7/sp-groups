@@ -192,7 +192,7 @@ public class User {
     {
         return !ucm.getFileConfiguration().getString(CFG.UserChatColor(uuid), "null").equals("null");
     }
-    public boolean hasClan()
+    public boolean hasGroup()
     {
         return (group!=null);
     }

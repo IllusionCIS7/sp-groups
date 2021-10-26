@@ -49,8 +49,10 @@ public class Group {
     public Group(String guid)
     {
         this.guid = guid;
-        getConfigs();
-        load();
+        if (guid != null) {
+            getConfigs();
+            load();
+        }
     }
 
     // Speichert die Eigenschaften ab. Je nachdem, ob die Gruppe existiert oder nicht, geschieht das anders

@@ -22,38 +22,38 @@ public final class CFG {
             z: etc....
      */
     public static String GroupName(String guid){
-        return guid + ".name";
+        return "groups." + guid + ".name";
     }
     public static String GroupBaseWorld(String guid){
-        return guid + ".base.world";
+        return "groups." + guid + ".base.world";
     }
-    public static String GroupBaseCoordinatesX(String guid){ return guid + ".base.x"; }
+    public static String GroupBaseCoordinatesX(String guid){ return "groups." + guid + ".base.x"; }
     public static String GroupBaseCoordinatesY(String guid){
-        return guid + ".base.y";
+        return "groups." + guid + ".base.y";
     }
     public static String GroupBaseCoordinatesZ(String guid){
-        return guid + ".base.z";
+        return "groups." + guid + ".base.z";
     }
     public static String GroupChatColor(String guid){
-        return guid + ".chatColor";
+        return "groups." + guid + ".chatColor";
     }
     public static String GroupOwner(String guid){
-        return guid + ".owner";
+        return "groups." + guid + ".owner";
     }
     public static String GroupMember(String guid){
-        return guid + ".member";
+        return "groups." + guid + ".member";
     }
     public static String UserChatColor(String uuid){
-        return uuid + ".chatColor";
+        return "user." + uuid + ".chatColor";
     }
     public static String UserGroup(String uuid){
-        return uuid + ".group";
+        return "user." + uuid + ".group";
     }
     public static String UserClanChatActive(String uuid){
-        return uuid + ".clanChatActive";
+        return "user." + uuid + ".clanChatActive";
     }
     public static String UserInvitations(String uuid){
-        return uuid + ".invitations";
+        return "user." + uuid + ".invitations";
     }
     public static String ConfigDefaultUserChatColor(){
         return "defaultUserChatColor";
