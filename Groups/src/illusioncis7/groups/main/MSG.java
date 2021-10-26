@@ -90,6 +90,10 @@ public final class MSG {
         return ChatColor.translateAlternateColorCodes('&', msg);
     }
 
+    public static String HasNoGroup() {
+        return ChatColor.translateAlternateColorCodes('&', cm.getString("hasNoGroup"));
+    }
+
     public static String DeleteGroupDoesntExists() {
         return ChatColor.translateAlternateColorCodes('&', cm.getString("deleteGroup.doesntExists"));
     }

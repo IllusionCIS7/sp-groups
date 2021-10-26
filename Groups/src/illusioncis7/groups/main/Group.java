@@ -111,6 +111,14 @@ public class Group {
         save();
     }
 
+    // Setzt eine neue Base-Location und speichert diese sofort
+    public void setBase(Location loc)
+    {
+        this.baseLoc = loc;
+        this.baseWorld = loc.getWorld();
+        save();
+    }
+
     // Gibt eine Liste von User Objekten zurück die die Gruppenmitglieder beinhaltet
     public List<User> getMembers()
     {

@@ -20,6 +20,8 @@ import java.util.Set;
 // Command Executor fpr den '/groups' Command
 public class CLgroups implements CommandExecutor {
 
+    private final String standardResponse = "Etwas ist schief gelaufen.";
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
@@ -37,8 +39,11 @@ public class CLgroups implements CommandExecutor {
             {
                 if (args[0].equalsIgnoreCase("create") && args.length == 2)
                 {
-
                     playerSender.sendMessage(CreateGroup(user, args[1]));
+                }
+                else if (args[0].equalsIgnoreCase("setbase") && args.length == 1)
+                {
+                    playerSender.sendMessage(SetBase(user, playerSender));
                 }
             }
         }
@@ -47,7 +52,7 @@ public class CLgroups implements CommandExecutor {
 
     private String CreateGroup(User user, String groupName)
     {
-        String response = "Etwas ist schief gelaufen.";
+        String response = standardResponse;
 
         if (user.hasGroup())
         {
@@ -72,6 +77,29 @@ public class CLgroups implements CommandExecutor {
             {
                 response = MSG.CreateGroupAlreadyExists(checkGroup);
             }
+        }
+        return response;
+    }
+
+    private String SetBase(User user, Player player)
+    {
+        String response = standardResponse;
+        if (user.hasGroup())
+        {
+            Group group = user.getGroup();
+            if (group.getOwner().equals(user))
+            {
+                group.setBase(player.getLocation());
+                response = MSG.BaseSpawnCreated();
+            }
+            else
+            {
+                response = MSG.NotOwner();
+            }
+        }
+        else
+        {
+            response = MSG.HasNoGroup();
         }
         return response;
     }
