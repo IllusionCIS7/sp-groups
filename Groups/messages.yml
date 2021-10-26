@@ -11,6 +11,7 @@ alreadyInGroup: '&7Du bist bereits in einer Gruppe!'
 leavedGroup: '&7Du hast die Gruppe &aerfolgreich &7verlassen'
 notOwner: '&7Du bist nicht der Owner dieser Gruppe!'
 hasNoGroup: '&7Du bist in keiner Gruppe.'
+notOnline: '&7Der Spieler ist nicht online oder existiert nicht.'
 illegalColorCode: '$7Du hast einen oder mehrere nicht erlaubte Farbcodes verwendet!\nNicht erlaubt sind: $c%illegalColorCodes%'
 illegalGroupName: 'Dein Gruppenname enthält eine oder mehrere nicht erlaubte Zeichenfolgen!'
 createGroup:
@@ -26,6 +27,8 @@ invite:
   declined: '&cEinladung abgelehnt.'
   notExists: '&cDie Einladung existiert nicht.'
   list: '&7Einladung zur &9%groupName%&7-Gruppe'
+  alreadyInGroup: '&7Der Spieler ist bereits in einer Gruppe.'
+  success: '&7Die Einladung wurde erfolgreich an &9%newUser% &7versendet!'
 baseSpawn:
   notExists: '&7Es existiert noch kein Base-Spawnpunkt.'
   created: '&7Base-Spawnpunkt gesetzt.'

@@ -121,8 +121,22 @@ public final class MSG {
         return ChatColor.translateAlternateColorCodes('&', msg);
     }
 
+    public static String NotOnline() {
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("notOnline")));
+    }
+
     public static String InviteAccepted() {
         return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(cm.getString("invite.accepted")));
+    }
+
+    public static String InviteAlreadyInGroup() {
+        return ChatColor.translateAlternateColorCodes('&', cm.getString("invite.alreadyInGroup"));
+    }
+
+    public static String InviteSuccessfull(User newUser) {
+        String msg = cm.getString("invite.success");
+        msg = msg.replaceAll("%newUser%", newUser.getOfflinePlayer().getName());
+        return ChatColor.translateAlternateColorCodes('&', msg);
     }
 
     public static String InviteDeclined() {

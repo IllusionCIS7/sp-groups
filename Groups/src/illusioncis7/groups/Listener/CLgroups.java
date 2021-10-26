@@ -1,9 +1,11 @@
 package illusioncis7.groups.Listener;
 
 import illusioncis7.groups.main.Group;
+import illusioncis7.groups.main.Invitation;
 import illusioncis7.groups.main.MSG;
 import illusioncis7.groups.main.User;
 import illusioncis7.utils.Checker;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -118,6 +120,47 @@ public class CLgroups implements CommandExecutor {
             {
                 player.teleport(group.getBase());
                 response = MSG.BaseSpawnTeleported();
+            }
+        }
+        else
+        {
+            response = MSG.HasNoGroup();
+        }
+        return response;
+    }
+
+    private String AddMember(User user, String newMember)
+    {
+        String response = standardResponse;
+
+        if (user.hasGroup())
+        {
+            Group group = user.getGroup();
+            if (group.getOwner().equals(user))
+            {
+                if (Bukkit.getPlayer(newMember) != null)
+                {
+                    Player newPlayer = Bukkit.getPlayer(newMember);
+                    User newUser = new User(newPlayer.getUniqueId().toString());
+                    if (newUser.hasGroup())
+                    {
+                        response = MSG.InviteAlreadyInGroup();
+                    }
+                    else
+                    {
+                        Invitation newInvitation = new Invitation(user.getGroup(), newUser);
+                        newUser.setInvitation(newInvitation);
+                        response = MSG.InviteSuccessfull(newUser);
+                    }
+                }
+                else
+                {
+                    response = MSG.NotOnline();
+                }
+            }
+            else
+            {
+                response = MSG.NotOwner();
             }
         }
         else
