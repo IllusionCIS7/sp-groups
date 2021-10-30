@@ -19,8 +19,8 @@ public class Invitation {
     public Invitation(Group newGroup, User newUser)
     {
         // Abrufen der nötigen Konfigurationen
-        gcm = new ConfigManager(Main.getPlugin(Main.class), "groups.yml");
-        ucm = new ConfigManager(Main.getPlugin(Main.class), "user.yml");
+        gcm = new ConfigManager(Main.getPlugin(Main.class), CFG.GroupsFile());
+        ucm = new ConfigManager(Main.getPlugin(Main.class), CFG.UserFile());
 
         // Übergabeparameter (Gruppe und eingeladener Spieler) werden an die Klassenvariablen übergeben
         group = newGroup;

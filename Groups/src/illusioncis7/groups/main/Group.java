@@ -165,7 +165,7 @@ public class Group {
     // Definiert das Objekt gcm welches nun die Config für die groups.yml enthält
     private void getConfigs()
     {
-        gcm = new ConfigManager(Main.getPlugin(Main.class), "groups.yml");
+        gcm = new ConfigManager(Main.getPlugin(Main.class), CFG.GroupsFile());
     }
 
     // Selbsterklärend

@@ -36,8 +36,8 @@ public class User {
         uuid = playerByUUID;
         if (isNew)
         {
-            ConfigManager cfg = new ConfigManager(Main.getPlugin(Main.class), "config.yml");
-            ucm = new ConfigManager(Main.getPlugin(Main.class), "user.yml");
+            ConfigManager cfg = new ConfigManager(Main.getPlugin(Main.class), CFG.ConfigFile());
+            ucm = new ConfigManager(Main.getPlugin(Main.class), CFG.UserFile());
             clanChatActive = false;
             chatColor = cfg.getFileConfiguration().getString(CFG.ConfigDefaultUserChatColor());
             save();
@@ -49,14 +49,14 @@ public class User {
     */
     public User(String playerByUUID)
     {
-        ucm = new ConfigManager(Main.getPlugin(Main.class), "user.yml");
+        ucm = new ConfigManager(Main.getPlugin(Main.class), CFG.UserFile());
         this.uuid = playerByUUID;
         load();
     }
 
     public User(Player playerByObject)
     {
-        ucm = new ConfigManager(Main.getPlugin(Main.class), "user.yml");
+        ucm = new ConfigManager(Main.getPlugin(Main.class), CFG.UserFile());
         this.uuid = playerByObject.getUniqueId().toString();
         load();
     }

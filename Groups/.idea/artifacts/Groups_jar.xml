@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Groups:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Groups_jar</output-path>
+    <root id="archive" name="Groups.jar">
+      <element id="module-output" name="Groups" />
+      <element id="module-source" name="Groups" />
+    </root>
+  </artifact>
+</component>

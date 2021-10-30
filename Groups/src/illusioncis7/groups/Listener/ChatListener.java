@@ -2,13 +2,9 @@ package illusioncis7.groups.Listener;
 
 import illusioncis7.groups.main.Group;
 import illusioncis7.groups.main.User;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-
-import java.util.List;
 
 public class ChatListener implements Listener {
 
@@ -20,7 +16,7 @@ public class ChatListener implements Listener {
     public void onChatEvent(AsyncPlayerChatEvent e)
     {
         userSender = new User(e.getPlayer());
-        if (userSender.hasClan())
+        if (userSender.hasGroup())
         {
             userSender.getUuid();
         }

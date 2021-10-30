@@ -10,7 +10,7 @@ import java.util.Set;
 
 public final class Checker {
 
-    private static final FileConfiguration cm = new ConfigManager("config.yml").getFileConfiguration();
+    private static final FileConfiguration cm = new ConfigManager(CFG.ConfigFile()).getFileConfiguration();
 
     public static boolean HasIllegalColorCodes(String s)
     {
@@ -26,7 +26,7 @@ public final class Checker {
 
     public static Group checkGroupNameAvailability(String groupName)
     {
-        FileConfiguration cm = new ConfigManager("groups.yml").getFileConfiguration();
+        FileConfiguration cm = new ConfigManager(CFG.GroupsFile()).getFileConfiguration();
         Set<String> guids = null;
         guids = cm.getConfigurationSection("groups").getKeys(false);
         for (String guid : guids)
@@ -42,7 +42,7 @@ public final class Checker {
 
     public static User checkUserAvailability(String tcUUID)
     {
-        FileConfiguration cm = new ConfigManager("user.yml").getFileConfiguration();
+        FileConfiguration cm = new ConfigManager(CFG.UserFile()).getFileConfiguration();
         Set<String> uuids = null;
         uuids = cm.getConfigurationSection("user").getKeys(false);
         for (String uuid : uuids)
@@ -51,11 +51,8 @@ public final class Checker {
             {
                 return new User(uuid);
             }
-            else
-            {
-                return null;
-            }
         }
+        return null;
     }
 
     private static boolean checkStrings(List<String> illegalStrings, String stc)
