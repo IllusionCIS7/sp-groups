@@ -40,6 +40,7 @@ public class User {
             ucm = new ConfigManager(Main.getPlugin(Main.class), CFG.UserFile());
             clanChatActive = false;
             chatColor = cfg.getFileConfiguration().getString(CFG.ConfigDefaultUserChatColor());
+            group = new Group(CFG.DefaultGroup());
             save();
         }
     }
@@ -171,14 +172,14 @@ public class User {
 
     public boolean setChatColor(String newChatColor)
     {
-        if (Checker.HasIllegalColorCodes(newChatColor))
-        {
-            return false;
-        }
-        else
+        if (Checker.isValidColorCode(newChatColor))
         {
             this.chatColor = newChatColor;
             return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -194,6 +195,6 @@ public class User {
     }
     public boolean hasGroup()
     {
-        return (group!=null);
+        return (group!=new Group(CFG.DefaultGroup()));
     }
 }

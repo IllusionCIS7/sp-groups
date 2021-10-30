@@ -191,14 +191,14 @@ public class Group {
     // Selbsterklärend
     public boolean setChatColor(String newChatColor)
     {
-        if (Checker.HasIllegalColorCodes(newChatColor))
-        {
-            return false;
-        }
-        else
+        if (Checker.isValidColorCode(newChatColor))
         {
             this.chatColor = newChatColor;
             return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
